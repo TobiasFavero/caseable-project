@@ -2,11 +2,11 @@ from marshmallow import Schema, fields, validate
 
 class Product:
     def __init__(self, id, price, name, description, image_link):
-        self.id = id
-        self.price = price
-        self.name = name
-        self.description = description
-        self.image_link = image_link
+        self.id: str = id
+        self.price: int = price
+        self.name: str = name
+        self.description: str = description
+        self.image_link: str = image_link
 
 class ProductSchema(Schema):
     model_class = Product

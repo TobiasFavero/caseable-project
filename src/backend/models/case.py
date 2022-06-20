@@ -1,4 +1,4 @@
-from models.dimensions import DimensionsSchema
+from models.dimensions import Dimensions, DimensionsSchema
 from models.product import Product, ProductSchema
 from marshmallow import fields, validate
 from config.fields import CaseFieldsValidValues
@@ -9,10 +9,10 @@ class Case(Product):
     def __init__(self, color, device, dimensions, protection_level, id, price, name, description, image_link):
         super().__init__(id, price, name, description, image_link)
 
-        self.color = color
-        self.device = device
-        self.dimensions = dimensions
-        self.protection_level = protection_level
+        self.color: str = color
+        self.device: str = device
+        self.dimensions: Dimensions = dimensions
+        self.protection_level: str = protection_level
 
 class CaseSchema(ProductSchema):
     instance_model = Case
