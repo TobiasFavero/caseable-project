@@ -3,12 +3,14 @@ from models.case_filters import CaseFilters
 from models.product import Product
 from repository.mongo_operations_helper import MongoOperationsHelper
 from repository.repository import Repository
-from .mongo_utils import create_connection
+from .mongo_utils import MongoUtils
+from injector import inject
 
 class ProductsRepository(Repository):
-    def __init__(self):
-        self.products_db = create_connection()
-        self.mongo_operations_helper = MongoOperationsHelper()
+    @inject
+    def __init__(self, mongo_utils: MongoUtils, mongo_operations_helper: MongoOperationsHelper):
+        self.products_db = mongo_utils.create_connection()
+        self.mongo_operations_helper = mongo_operations_helper
 
     def create(self, item: Product) -> Product:
         insert_result = self.products_db.products.insert_one(item)

@@ -17,5 +17,5 @@ class Repository:
         pass
 
     @abstractmethod
-    def get() -> List[T]:
+    def get(filters = None) -> List[T]:
         pass

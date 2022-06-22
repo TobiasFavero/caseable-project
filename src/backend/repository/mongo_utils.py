@@ -1,7 +1,9 @@
 from gridfs import Database
 from pymongo import MongoClient
-import os
+from services.environment_service import EnvironmentService
 
-def create_connection() -> Database:
-    client = MongoClient(os.getenv('MONGO_CONNECTION_STRING'))
-    return client.products
+class MongoUtils:
+    def create_connection(self) -> Database:
+        connection_string = EnvironmentService().get_one("DATABASE_URI")
+        client = MongoClient(connection_string)
+        return client.products

@@ -5,10 +5,12 @@ from models.product import Product
 from repository.products_repository import ProductsRepository
 from repository.repository import Repository
 from errors.database_error import DatabaseError
+from injector import inject
 
 class ProductsService:
-    def __init__(self):
-        self.repository: Repository = ProductsRepository()
+    @inject
+    def __init__(self, products_repository: Repository):
+        self.repository: Repository = products_repository
 
     def create_product(self, product_to_create: Product) -> str:
         filters = CaseFilters(product_to_create["id"])
