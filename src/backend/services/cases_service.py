@@ -7,7 +7,7 @@ from repository.repository import Repository
 from errors.database_error import DatabaseError
 from injector import inject
 
-class ProductsService:
+class CasesService:
     @inject
     def __init__(self, products_repository: Repository):
         self.repository: Repository = products_repository
