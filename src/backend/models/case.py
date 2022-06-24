@@ -7,7 +7,7 @@ valid_values = CaseFieldsValidValues()
 
 class Case(Product):
     def __init__(self, color, device, dimensions, protection_level, id, price, name, description, image_link):
-        super().__init__(id, price, name, description, image_link)
+        super().__init__(id, price, name, description, image_link, 'case')
 
         self.color: str = color
         self.device: str = device

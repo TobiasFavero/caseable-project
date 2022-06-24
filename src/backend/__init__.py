@@ -6,9 +6,12 @@ from routes.cases import cases_bp
 from services.environment_service import EnvironmentService
 from flask_injector import FlaskInjector
 from utils.dependencies_injector import configure
+from flask_cors import CORS
 
 def create_app():
     app = Flask(__name__)
+
+    CORS(app)
 
     #Configurations
     config = get_config(environ.get("FLASK_ENV"))
