@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { COLORS } from "../../styles/colors";
 
-export const Container = styled.main`
+export const ProductsContainer = styled.main`
   display: grid;
   width: 80%;
   height: 100%;

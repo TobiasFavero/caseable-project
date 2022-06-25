@@ -1,12 +1,11 @@
-import { HTTP_VERBS, PRODUCTS_BASE_URL } from "../../config/constants";
+import { HTTP_VERBS, BASE_URL } from "../../config/constants";
 import { useFetch } from "../../hooks/useFetch";
 import Product from "../Product/Product";
-import { Container } from "./ProductList.styles";
 
-const ProductList = () => {
+const ProductsList = () => {
   const { isLoading, apiData, serverError } = useFetch(
     HTTP_VERBS.GET,
-    PRODUCTS_BASE_URL
+    BASE_URL + "/cases"
   );
 
   const renderProduct = (productData) => {
@@ -14,7 +13,7 @@ const ProductList = () => {
     return <Product key={id} productData={productData} />;
   };
 
-  return <Container>{apiData?.map(renderProduct)}</Container>;
+  return apiData?.map(renderProduct);
 };
 
-export default ProductList;
+export default ProductsList;
