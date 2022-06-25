@@ -1,7 +1,7 @@
 from marshmallow import Schema, fields, missing, validate
-from config.fields import CaseFieldsValidValues
+from config.fields import ProductFieldsValidValues
 
-valid_values = CaseFieldsValidValues()
+valid_values = ProductFieldsValidValues()
 
 class Product:
     def __init__(self, id, price, name, description, image_link, product_type):
@@ -19,7 +19,7 @@ class ProductSchema(Schema):
     price = fields.Int(validate=validate.Range(min=0.1), required=True)
     name = fields.String(validate=validate.Length(1), required=True)
     description = fields.String(validate=validate.Length(1), required=True)
-    image_link = fields.Url(missing="https://de.bellroy.com/products/phone-case")
+    image_link = fields.Url(missing=valid_values.default_img_url)
     product_type = fields.String(validate=validate.OneOf(valid_values.product_types), required=True)
 
     

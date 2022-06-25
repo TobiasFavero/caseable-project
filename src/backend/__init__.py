@@ -1,6 +1,6 @@
 from os import environ
 from flask import Flask
-from config.config import get_config
+from config.config import get_config_by_env
 from routes.errors import error_bp 
 from routes.cases import cases_bp
 from services.environment_service import EnvironmentService
@@ -14,7 +14,7 @@ def create_app():
     CORS(app)
 
     #Configurations
-    config = get_config(environ.get("FLASK_ENV"))
+    config = get_config_by_env(environ.get("FLASK_ENV"))
     app.config.from_object(config)
     EnvironmentService().initialize(app.config)
 
