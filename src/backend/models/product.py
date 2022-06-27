@@ -1,4 +1,4 @@
-from marshmallow import Schema, fields, missing, validate
+from marshmallow import Schema, fields, validate
 from config.fields import ProductFieldsValidValues
 
 valid_values = ProductFieldsValidValues()
@@ -19,8 +19,9 @@ class ProductSchema(Schema):
     price = fields.Int(validate=validate.Range(min=0.1), required=True)
     name = fields.String(validate=validate.Length(1), required=True)
     description = fields.String(validate=validate.Length(1), required=True)
-    image_link = fields.Url(missing=valid_values.default_img_url)
+    image_link = fields.Url(required=True)
     product_type = fields.String(validate=validate.OneOf(valid_values.product_types), required=True)
+
 
     
 

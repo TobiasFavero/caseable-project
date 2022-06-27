@@ -1,9 +1,9 @@
 from typing import Dict
-from models.case_filters import CaseFilters
+from models.product_filters import ProductFilters
 from models.product import Product
 
 class MongoOperationsHelper:
-    def create_filters(self, filters: CaseFilters) -> Dict:
+    def create_filters(self, filters: ProductFilters) -> Dict:
         if filters is None: 
             return {}
             

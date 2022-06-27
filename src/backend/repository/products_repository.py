@@ -1,5 +1,5 @@
 from typing import List
-from models.case_filters import CaseFilters
+from models.product_filters import ProductFilters
 from models.product import Product
 from repository.mongo_operations_helper import MongoOperationsHelper
 from repository.repository import Repository
@@ -18,13 +18,13 @@ class ProductsRepository(Repository):
         return insert_result.acknowledged
 
     def delete(self, item: Product) -> Product:
-        filters = self.mongo_operations_helper.create_filters(CaseFilters(item["id"]))
+        filters = self.mongo_operations_helper.create_filters(ProductFilters(item["id"]))
         delete_result = self.products_db.products.delete_one(filters)
 
         return delete_result.deleted_count
 
     def update(self, item: Product) -> Product:
-        filters = self.mongo_operations_helper.create_filters(CaseFilters(item["id"]))
+        filters = self.mongo_operations_helper.create_filters(ProductFilters(item["id"]))
         new_values = self.mongo_operations_helper.create_update_request_values(item)
         update_result = self.products_db.products.update_one(filters, new_values)
 
@@ -32,7 +32,7 @@ class ProductsRepository(Repository):
 
     def get(self, filters = None) -> List[Product]:
         mongo_filters = self.mongo_operations_helper.create_filters(filters)
-        products_cursor = self.products_db.products.find(mongo_filters)
+        products_cursor = self.products_db.products.find(mongo_filters, {"_id": False})
         products = [product for product in products_cursor]
 
         return products

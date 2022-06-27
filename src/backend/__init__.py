@@ -2,7 +2,8 @@ from os import environ
 from flask import Flask
 from config.config import get_config_by_env
 from routes.errors import error_bp 
-from routes.cases import cases_bp
+from routes.phone_cases import cases_bp
+from routes.products import products_bp
 from services.environment_service import EnvironmentService
 from flask_injector import FlaskInjector
 from utils.dependencies_injector import configure
@@ -21,6 +22,7 @@ def create_app():
     #Blueprints
     app.register_blueprint(error_bp)
     app.register_blueprint(cases_bp)
+    app.register_blueprint(products_bp)
 
     #Dependencies Injector
     FlaskInjector(app=app, modules=[configure])
