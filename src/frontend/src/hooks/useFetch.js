@@ -19,9 +19,9 @@ export const useFetch = (method, url, body = {}) => {
         const data = await resp?.data;
 
         setApiData(data);
-        setIsLoading(false);
       } catch (error) {
         setServerError(error);
+      } finally {
         setIsLoading(false);
       }
     };

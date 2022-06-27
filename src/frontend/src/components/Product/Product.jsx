@@ -3,9 +3,11 @@ import { Card, CardHeader, CardBody, CardTitle } from "./Product.styles";
 import { PRODUCT_TYPE_MAPPER } from "../../config/fieldsMapper";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { useNavigate } from "react-router-dom";
-import { ROUTES } from "../../config/constants";
+import { ROUTES_MAPPER } from "../../config/constants";
+import PropTypes from "prop-types";
+import Skeleton from "react-loading-skeleton";
 
-const Product = ({ productData }) => {
+const Product = ({ productData, isLoading }) => {
   const navigate = useNavigate();
 
   const { id, price, description, image_link, name, product_type } =
@@ -14,15 +16,15 @@ const Product = ({ productData }) => {
   const productTypeMapped = PRODUCT_TYPE_MAPPER[product_type];
 
   const navigateToEdit = () => {
-    const route = `${ROUTES.CASES.EDIT}/${id}`;
+    const path = ROUTES_MAPPER[product_type];
+    const route = `${path}/edit/${id}`;
     navigate(route);
   };
 
+  if (isLoading) return <Skeleton height="300px" />;
+
   return (
     <Card onClick={navigateToEdit}>
-      <CardTitle>
-        <div>Name: {name}</div>
-      </CardTitle>
       <CardHeader>
         <LazyLoadImage
           src={image_link}
@@ -31,14 +33,21 @@ const Product = ({ productData }) => {
           width="75%"
         />
       </CardHeader>
+      <CardTitle>
+        <div>{name}</div>
+        <div>€{price}</div>
+      </CardTitle>
       <CardBody>
-        <div>Id: {id}</div>
-        <div>Product Type: {productTypeMapped}</div>
+        <div>SN: {id}</div>
+        <div>Type: {productTypeMapped}</div>
         <div>Description: {description}</div>
-        <div>Price: €{price}</div>
       </CardBody>
     </Card>
   );
+};
+
+Product.propTypes = {
+  productData: PropTypes.object.isRequired,
 };
 
 export default Product;
