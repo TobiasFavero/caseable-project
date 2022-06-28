@@ -17,7 +17,7 @@ class DevConfig(Config):
     DATABASE_URI = environ.get("DEV_MONGODB_URI")
 
 class TestConfig(Config):
-    FLASK_ENV = "development"
+    FLASK_ENV = "test"
     DEBUG = True
     TESTING = True
     DATABASE_URI = environ.get("TEST_MONGODB_URI")

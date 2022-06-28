@@ -39,6 +39,6 @@ class PhoneCasesService(ProductsHandlerService):
         deleted_count = self.repository.delete(case_to_delete)
 
         if not deleted_count:
-            raise DatabaseError(message=f"Couldn't delete the case with the Id: {case_to_delete['id']}")
+            raise DatabaseError(message=f"Couldn't delete the case with the Id: {case_to_delete['id']}. Check if the case Id exists.")
 
         return deleted_count

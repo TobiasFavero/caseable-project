@@ -1,8 +1,9 @@
 from flask import Blueprint, jsonify
 from injector import inject
+from config.constants import PRODUCTS_ROUTE
 from services.products_service import ProductsService
 
-products_bp = Blueprint("products", __name__, url_prefix="/api/products")
+products_bp = Blueprint("products", __name__, url_prefix=PRODUCTS_ROUTE)
 
 @inject
 @products_bp.route("", methods=["GET"])

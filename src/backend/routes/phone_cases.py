@@ -1,4 +1,5 @@
 from flask import request
+from config.constants import CASES_ROUTE
 from models.phone_case import PhoneCaseSchema
 from flask import Blueprint, request
 from routes.decorators.validate_json import validate_json
@@ -6,7 +7,7 @@ from routes.decorators.validate_required_field import validate_required_field
 from services.phone_cases_service import PhoneCasesService
 from injector import inject
 
-cases_bp = Blueprint("cases", __name__, url_prefix="/api/cases")
+cases_bp = Blueprint("cases", __name__, url_prefix=CASES_ROUTE)
 
 @inject
 @cases_bp.route("", methods=["POST"])
@@ -25,7 +26,7 @@ def put(case_schema: PhoneCaseSchema, cases_service: PhoneCasesService):
     case_to_update = case_schema.load(request.json, partial=True)
     cases_service.update_case(case_to_update)
     
-    return { "message": "Case updated." }, 200
+    return { "message": "Case updated."  }, 200
 
 @inject
 @cases_bp.route("", methods=["DELETE"])

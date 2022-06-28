@@ -7,3 +7,8 @@ class MongoUtils:
         connection_string = EnvironmentService().get_one("DATABASE_URI")
         client = MongoClient(connection_string)
         return client.products
+    
+    #only used in testing
+    def drop_products_collection(self):
+        connection = self.create_connection()
+        connection.products.drop()
