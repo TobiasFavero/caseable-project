@@ -10,6 +10,5 @@ export const ProductsContainer = styled.main`
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   grid-gap: 1rem;
   border-radius: 0.2rem;
-  background-color: ${COLORS.LIGHTGRAY};
   overflow-y: auto hidden;
 `;
