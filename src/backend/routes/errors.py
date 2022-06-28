@@ -17,7 +17,7 @@ def handle_not_found(error):
 @error_bp.app_errorhandler(ValidationError)
 def handle_invalid_data(error):
     print(traceback.format_exc())
-    return { "error": error.messages }, 400
+    return { "error": str(error.messages) }, 400
 
 @error_bp.app_errorhandler(DatabaseError)
 def handle_invalid_data(error):

@@ -19,4 +19,4 @@ class PhoneCaseSchema(ProductSchema):
     color = fields.Str(validate=validate.OneOf(valid_values.colors), required=True)
     device = fields.Str(validate=validate.OneOf(valid_values.devices), required=True)
     protection_level = fields.Str(validate=validate.OneOf(valid_values.protection_levels), required=True)
-    dimensions = fields.Str(required=True)
+    dimensions = fields.Str(validate=validate.Regexp('^\d+(\.\d+)? x \d+(\.\d+)? x \d+(\.\d+)?$'),required=True)

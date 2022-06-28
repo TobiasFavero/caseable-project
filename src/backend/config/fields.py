@@ -6,5 +6,5 @@ class PhoneCaseFieldsValidValues:
 
 class ProductFieldsValidValues:
     def __init__(self):
-        self.product_types = ("case",)
+        self.product_types = ("phone_case",)
 
