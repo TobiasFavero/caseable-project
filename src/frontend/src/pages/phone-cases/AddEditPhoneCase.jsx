@@ -12,24 +12,21 @@ import {
 import { Formik, Form } from "formik";
 import { ProductsContext } from "../../context/productsContext";
 import { ROUTES } from "../../config/constants";
-import { useApi } from "../../hooks/useApi";
+import { request, useApi } from "../../utils/apiUtils";
 import { phoneCasesApi } from "../../api/casesApi";
 import ProductForm from "../../components/ProductForm/ProductForm";
 import PhoneCaseForm from "../../components/PhoneCaseForm/PhoneCaseForm";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import CustomButton from "../../components/CustomButton/CustomButton";
 
 const AddEditPhoneCase = () => {
+  const navigate = useNavigate();
   const { products } = useContext(ProductsContext);
   const { id } = useParams();
   const [currentPhoneCase, setCurrentPhoneCase] = useState({});
   const [initialValues, setInitialValues] = useState(
     PHONE_CASE_FORM_INITIAL_VALUES
   );
-  const createPhoneCaseApi = useApi(phoneCasesApi.addCase);
-  const deletePhoneCaseApi = useApi(phoneCasesApi.deleteCase);
-  const updatePhoneCaseApi = useApi(phoneCasesApi.updateCase);
-
   const isAddMode = !id;
 
   useEffect(() => {
@@ -42,22 +39,32 @@ const AddEditPhoneCase = () => {
     }
   }, []);
 
+  const navigateToProducts = () => {
+    setTimeout(() => navigate(ROUTES.PRODUCTS), 500);
+  };
+
   const handleSubmit = async (values) => {
+    let data = null;
     if (isAddMode) {
-      await createPhoneCaseApi.request(values);
+      data = await request(phoneCasesApi.addCase, values);
     } else {
-      await updatePhoneCaseApi.request(values);
+      data = await request(phoneCasesApi.updateCase, values);
+    }
+
+    if (data) {
+      const message = isAddMode ? "Phone case created" : "Phone case updated";
+      toast.success(message);
+      navigateToProducts();
     }
   };
 
   const handleDelete = async () => {
     if (!isAddMode) {
-      await deletePhoneCaseApi.request(currentPhoneCase);
+      const data = await request(phoneCasesApi.deleteCase, currentPhoneCase);
 
-      if (!deletePhoneCaseApi.error) {
+      if (data) {
         toast.success("Phone case deleted");
-      } else {
-        toast.error(deletePhoneCaseApi.error);
+        navigateToProducts();
       }
     }
   };
@@ -66,7 +73,7 @@ const AddEditPhoneCase = () => {
     <>
       <FormContainer>
         <FormHeader>
-          <h1>{isAddMode ? "Add Case" : "Edit Case"}</h1>
+          <h1>{isAddMode ? "Add Phone Case" : "Edit Phone Case"}</h1>
           <Link to={ROUTES.PRODUCTS}>Go back</Link>
         </FormHeader>
         <Formik
@@ -76,7 +83,7 @@ const AddEditPhoneCase = () => {
           onSubmit={(values) => handleSubmit(values)}
         >
           <Form>
-            <ProductForm />
+            <ProductForm editMode={!isAddMode} />
             <PhoneCaseForm />
             <ButtonsContainer>
               {!isAddMode && (
@@ -93,17 +100,6 @@ const AddEditPhoneCase = () => {
           </Form>
         </Formik>
       </FormContainer>
-      <ToastContainer
-        position="top-center"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-      />
     </>
   );
 };

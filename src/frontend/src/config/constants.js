@@ -13,33 +13,13 @@ export const HTTP_VERBS = {
 
 export const ROUTES = {
   PRODUCTS: "/",
-  CASES: {
-    EDIT_ID: "cases/edit/:id",
-    ADD: "cases/add",
-    EDIT: "cases/edit",
+  PHONE_CASES: {
+    EDIT_ID: "phone-cases/edit/:id",
+    ADD: "phone-cases/add",
+    EDIT: "phone-cases/edit",
   },
 };
 
 export const ROUTES_MAPPER = {
-  case: "/cases",
+  phone_case: "/phone-cases",
 };
-
-export const PRODUCT_TYPES_OPTIONS = [{ value: "case", label: "Case" }];
-
-export const CASES_COLORS_OPTIONS = [
-  { value: "red", label: "Red" },
-  { value: "green", label: "Green" },
-  { value: "blue", label: "Blue" },
-];
-
-export const CASES_PROTECTION_LEVELS_OPTIONS = [
-  { value: "high", label: "High" },
-  { value: "medium", label: "Medium" },
-  { value: "low", label: "Low" },
-];
-
-export const CASES_DEVICES_OPTIONS = [
-  { value: "iphone_11", label: "iPhone 11" },
-  { value: "iphone_12", label: "iPhone 12" },
-  { value: "iphone_13", label: "iPhone 13" },
-];

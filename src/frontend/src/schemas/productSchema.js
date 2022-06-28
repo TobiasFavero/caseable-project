@@ -1,11 +1,16 @@
 import * as Yup from "yup";
 
+export const PRODUCT_TYPES_OPTIONS = [
+  { value: "phone_case", label: "Phone Case" },
+];
+
+export const PRODUCT_TYPE_FIELD_NAME = "product_type";
+
 export const PRODUCT_FIELDS = {
-  id: { value: "id", label: "Serial Number" },
+  id: { value: "id", label: "Serial Number", disabled: true },
   price: { value: "price", label: "Price" },
   name: { value: "name", label: "Name" },
   description: { value: "description", label: "Description" },
-  product_type: { value: "product_type", label: "Product Type" },
   image_link: { value: "image_link", label: "Image Link" },
 };
 
@@ -20,10 +25,7 @@ export const productSchema = Yup.object().shape({
   [PRODUCT_FIELDS.description.value]: Yup.string().required(
     "Description is required"
   ),
-  [PRODUCT_FIELDS.product_type.value]: Yup.string().required(
-    "Product Type is required"
-  ),
-  [PRODUCT_FIELDS.image_link.value]: Yup.string().url(
-    "Image Linke must be a valid URL"
-  ),
+  [PRODUCT_FIELDS.image_link.value]: Yup.string()
+    .url("Image Linke must be a valid URL")
+    .required("Image Link is required"),
 });

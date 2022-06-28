@@ -14,8 +14,10 @@ export const FormContainer = styled.div`
   padding: 3rem;
   color: ${COLORS.GRAY};
 
-  & input.formik-field {
+  & input.formik-field,
+  select.formik-field {
     padding: 4px 12px;
+    width: 200px;
   }
 
   & .error-message {

@@ -3,8 +3,9 @@ import { Button } from "../../styles/global.styles";
 import { ProductsCreatorContainer } from "./ProductsCreator.styles";
 import { useNavigate } from "react-router-dom";
 import Select from "react-select";
-import { PRODUCT_TYPES_OPTIONS, ROUTES_MAPPER } from "../../config/constants";
+import { ROUTES_MAPPER } from "../../config/constants";
 import { useSelect } from "../../hooks/useSelect";
+import { PRODUCT_TYPES_OPTIONS } from "../../schemas/productSchema";
 
 const ProductsCreator = () => {
   const [selectedValue, handleChange] = useSelect("Please select one");

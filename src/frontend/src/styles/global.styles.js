@@ -8,6 +8,10 @@ const GlobalStyle = createGlobalStyle`
     background: ${COLORS.LIGHTGRAY};
     font-family: "Roboto", sans-serif;
     font-size: 62.5%;
+
+    & .toast-container {
+      font-size: 1rem;
+    }
   }
 `;
 
