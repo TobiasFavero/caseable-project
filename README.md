@@ -20,9 +20,11 @@ Backend:
 
 > go to src/backend
 
-> python -m venv venv
+> python3 -m venv venv
 
-> ./venv/Scripts/activate
+> source venv/bin/activate //macOS
+
+> ./venv/Scripts/activate //windows
 
 > pip install -r requirements.txt
 
@@ -36,9 +38,13 @@ From console:
 
 > go to src/backend
 
-> $env:FLASK_ENV = "development"
+> export FLASK_ENV=development //macOS
 
-> ./venv/Scripts/activate
+> ./venv/Scripts/activate //windows
+
+> export FLASK_ENV=development //macOS
+
+> $env:FLASK_ENV = "development" //windows
 
 > flask run
 
