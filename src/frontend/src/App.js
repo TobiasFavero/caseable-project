@@ -21,7 +21,7 @@ function App() {
         <Route path="*" element={<Navigate to={ROUTES.PRODUCTS} replace />} />
       </Routes>
       <ToastContainer
-        position="top-center"
+        position="bottom-center"
         autoClose={3000}
         hideProgressBar={false}
         newestOnTop={false}

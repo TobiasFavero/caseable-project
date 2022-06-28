@@ -25,7 +25,7 @@ const ProductsList = () => {
   };
 
   return !productsContext.products.length
-    ? "Add a product"
+    ? "There are no products"
     : productsContext.products.map(renderProduct);
 };
 

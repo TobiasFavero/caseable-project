@@ -12,7 +12,7 @@ import {
 import { Formik, Form } from "formik";
 import { ProductsContext } from "../../context/productsContext";
 import { ROUTES } from "../../config/constants";
-import { request, useApi } from "../../utils/apiUtils";
+import { request } from "../../utils/apiUtils";
 import { phoneCasesApi } from "../../api/casesApi";
 import ProductForm from "../../components/ProductForm/ProductForm";
 import PhoneCaseForm from "../../components/PhoneCaseForm/PhoneCaseForm";
