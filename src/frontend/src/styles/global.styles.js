@@ -5,7 +5,7 @@ const GlobalStyle = createGlobalStyle`
   body {
     margin: 0;
     padding: 0;
-    background: ${COLORS.LIGHTGRAY};
+    background: ${COLORS.WHITE};
     font-family: "Roboto", sans-serif;
     font-size: 62.5%;
 

@@ -29,8 +29,9 @@ const Product = ({ productData, isLoading }) => {
         <LazyLoadImage
           src={image_link}
           alt={description}
-          height="auto"
-          width="75%"
+          height="250px"
+          width="250px"
+          className="card-image"
         />
       </CardHeader>
       <CardTitle>

@@ -21,6 +21,10 @@ export const CardHeader = styled.div`
   display: flex;
   justify-content: center;
   margin-top: 0.2rem;
+
+  & img {
+    object-fit: contain;
+  }
 `;
 
 export const CardBody = styled.div`
