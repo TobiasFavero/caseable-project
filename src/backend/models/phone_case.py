@@ -1,3 +1,4 @@
+from config.fields import ProductFieldsValidValues
 from models.product import Product, ProductSchema
 from marshmallow import fields, validate
 from config.fields import PhoneCaseFieldsValidValues
@@ -6,7 +7,7 @@ valid_values = PhoneCaseFieldsValidValues()
 
 class PhoneCase(Product):
     def __init__(self, color, device, dimensions, protection_level, id, price, name, description, image_link):
-        super().__init__(id, price, name, description, image_link, 'case')
+        super().__init__(id, price, name, description, image_link, valid_values.product_types[0])
 
         self.color: str = color
         self.device: str = device

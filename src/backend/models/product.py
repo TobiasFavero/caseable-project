@@ -6,7 +6,7 @@ valid_values = ProductFieldsValidValues()
 class Product:
     def __init__(self, id, price, name, description, image_link, product_type):
         self.id: str = id
-        self.price: int = price
+        self.price: float = price
         self.name: str = name
         self.description: str = description
         self.image_link: str = image_link
@@ -16,7 +16,7 @@ class ProductSchema(Schema):
     model_class = Product
 
     id = fields.Int(validate=validate.Range(min=1), required=True)
-    price = fields.Int(validate=validate.Range(min=0.1), required=True)
+    price = fields.Float(validate=validate.Range(min=0.1), required=True)
     name = fields.String(validate=validate.Length(1), required=True)
     description = fields.String(validate=validate.Length(1), required=True)
     image_link = fields.Url(required=True)
